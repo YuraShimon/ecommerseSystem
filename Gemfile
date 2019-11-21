@@ -33,9 +33,11 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
+#Add_my_gem!!!
 gem 'devise', ">= 4.7.1"
-
+gem 'activeadmin'
+gem 'jquery-rails'
+#End_my_gem!!!
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
