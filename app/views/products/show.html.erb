@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @product.size %>
+</p>
+
+<p>
+  <strong>Price in:</strong>
+  <%= @product.price_in %>
+</p>
+
+<p>
+  <strong>Price out:</strong>
+  <%= @product.price_out %>
+</p>
+
+<p>
+  <strong>Date in:</strong>
+  <%= @product.date_in %>
+</p>
+
+<p>
+  <strong>Sale:</strong>
+  <%= @product.sale %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @product.user_id %>
+</p>
+
+<p>
+  <strong>Tags: </strong>
+  <%= raw @product.categories.map(&:name).map { |t| link_to t, category_path(t) }.join(', ') %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
