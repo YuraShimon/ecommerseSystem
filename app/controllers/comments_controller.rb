@@ -16,6 +16,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    params[:comment][:product_id] = params[:product_id]
+    params[:comment][:user_id] = current_user.id
+    @comment.destroy
+    redirect_to product_path(params[:product_id])
+  end
+
   private
   def comments_params
     params.require(:comment).permit(:user_id, :product_id, :body)
