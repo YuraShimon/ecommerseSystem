@@ -34,9 +34,42 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 #Add_my_gem!!!
-gem 'devise', ">= 4.7.1"
-gem 'activeadmin'
-gem 'jquery-rails'
+  #Gem_administrator
+  gem 'activeadmin'
+  #End_Gem_administartor
+
+  #Gem_user
+  gem 'devise', ">= 4.7.1"
+  #End_Gem_user
+
+  #Gem_avatar
+  #gem "paperclip", "~> 6.0.0"
+  #End_Gem_avatar
+
+  #Gem_edit_text
+  #gem 'tinymce-rails'
+  #End_Gem_edit_text
+
+  #Gem_jquerry
+  gem 'jquery-rails'
+  #End_Gem_jquerry
+
+  #Gem_bootstrap
+  gem 'bootstrap', '~> 4.0.0'
+  #End_Gem_bootstrap
+
+  #Gem_Вибір_країни
+  #gem 'country_select'
+  #End_Gem_Вибір_країни
+
+  #Gem_По-сторінковий_вивід
+  #gem 'will_paginate', '~> 3.1.0'
+  #gem 'order_as_specified'
+  #End_Gem_По-сторінковий_вивід
+
+  #Gem_search
+  gem 'ransack'
+  #End_Gem_search
 #End_my_gem!!!
 
 group :development, :test do

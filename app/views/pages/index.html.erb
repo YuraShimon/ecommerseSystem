@@ -1,11 +1,33 @@
+<center><h1>Тут має бути крута назва/логотип</h1></center>
 <% if user_signed_in? %>
-	<span><%= current_user.email %></span>
-  <hr>
-  <%= link_to 'Переглянути товар', products_path %>
-  <hr>
-	<p>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-  	</p>
-<% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+<center><h4><%= current_user.email %>, вітаємо вас на нашому сайті!</h4></center>
 <% end %>
+<div>
+	<% if user_signed_in? %>
+		<% if current_user.nil?%>
+			<%= link_to "Профіль" , userparam_path%><br>
+		<% else %>
+			<h4> Тут потрібно придумати передачу профіля юзера,
+				якщо користувач стврорив профіль, переводити його на 2 варіант,
+				якщо у нього немає профіля - кидати на 1 варіант. Спочатко реєструємо користувача,
+				потім створюємо профіль</h4>
+			<p><h3>Варіант 1(У нього немає профіля): <%= link_to "Профіль" , new_userparam_path(current_user.id)%></h3></p>
+			<p><h3>Якщо користувач зареєструвався, то він повинен перейти у перший варіант</h3></p>
+			<p><h3>Варіант 2(У нього є профіль): <%= link_to "Профіль" , userparam_path(current_user.id)%></h3></p>
+			<p><%= link_to 'Вийти', destroy_user_session_path, :method => :delete %></p>
+			<p><%= link_to 'Переглянути весь товар', products_path %></p>
+		<% end %>
+	<% else %>
+			<%= link_to 'Вхід', new_user_session_path %> или <%= link_to 'Зареєструватися', new_user_registration_path %>
+	<% end %>
+</div>
+<div>
+	<% if @product == [] %>
+	<p>Список продуктів порожній</p>
+	<% else %>
+		<% @product.each do | product | %>
+			<%= product.name %><br/>
+			<%= product.price_sale %><br/></p>
+		<% end %>
+	<% end %>
+</div>
