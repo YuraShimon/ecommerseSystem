@@ -1,7 +1,7 @@
 class Userparam < ApplicationRecord
 	belongs_to :user
 
-	validates :firstname, :lastname, presence: true
+	validates :nickname, :firstname, :lastname, presence: true
 
     validates :phone,
                uniqueness: true,

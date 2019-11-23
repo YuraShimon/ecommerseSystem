@@ -1,34 +1,39 @@
 <div class="main">
   <div class="container my-container">
     <div class="content">
+
       <div class="form-group">
-   <%= f.text_field :firstname, placeholder: "First name", autofocus: true, class:'form-control' %>
-  </div>
+       <%= f.text_field :nickname, placeholder: "Nickname", class:'form-control' %>
+      </div>
 
-  <div class="form-group">
-   <%= f.text_field :lastname, placeholder: "Last name", class:'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= f.text_field :firstname, placeholder: "First name", autofocus: true, class:'form-control' %>
+      </div>
 
-  <div class="form-group">
-   <%= f.text_field :country, placeholder: "Country", class:'form-control' %>
-  </div>
+      <div class="form-group">
+       <%= f.text_field :lastname, placeholder: "Last name", class:'form-control' %>
+      </div>
 
-  <div class="form-group">
-   <%= f.text_field :city, placeholder: "City", class:'form-control' %>
-  </div>
+      <div class="form-group">
+       <%= f.text_field :country, placeholder: "Country", class:'form-control' %>
+      </div>
 
-  <div class="form-group">
-   <%= f.text_field :phone, placeholder: "Phone number", class:'form-control' %>
-  </div>
+      <div class="form-group">
+       <%= f.text_field :city, placeholder: "City", class:'form-control' %>
+      </div>
 
-  <div class="form-group">
-   <%= f.date_select :dob, placeholder: "Date of birth", class:'form-control' %>
-  </div>
+      <div class="form-group">
+       <%= f.text_field :phone, placeholder: "Phone number", class:'form-control' %>
+      </div>
 
-  <div class="form-group text-center m-t-30">
-    <%= f.submit "Save", class: "btn btn-info" %>
-  </div>
+      <div class="form-group">
+       <%= f.date_select :dob, placeholder: "Date of birth", class:'form-control' %>
+      </div>
 
-  </div>
+      <div class="form-group text-center m-t-30">
+        <%= f.submit "Save", class: "btn btn-info" %>
+      </div>
+
+    </div>
   </div>
 </div>

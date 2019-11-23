@@ -35,22 +35,22 @@
   <%= raw @product.categories.map(&:name).map { |t| link_to t, category_path(t) }.join(', ') %>
 </p>
 
+<% if current_user.admin? %>
+  <p><h3><%= link_to 'Змінити поля товару', edit_product_path(@product) %></h3></p>
+<%end%>
+<p><h3><%= link_to 'Повернутися на сторінку продуктів', products_path %></h3></p>
+
+
 <hr>
 <div>
-  <% @comments.each do |comment|%>
-  <p>Користувач: <b><%= comment.user_id %></b> написав: </p>
-  <%= comment.body %>
-  <hr>
+  Коментувати
+  <%= form_for :comment, url:comments_path do |f| %>
+  	<%= render 'comments/form', f:f%>
+    <%= f.hidden_field :object_type, value: @product.class.name%>
+    <%= f.hidden_field :object_id, value: @product.id%>
+  	<%= f.submit "Create" %>
   <% end %>
-  <%= form_for :comment, url: product_comments_path(product_id: @product.id) do |f| %>
-  <% if flash[:notice] %>
-    <div class="notice"> <%= flash[:notice] %> </div>
-  <% end %>
-  <%= f.text_area :body, cols: 5, rows: 5 %><br />
-  <p><%= f.submit "Надіслати"%></p>
+  <% Comment.where(object: @product).each do |comment| %>
+  	<%=render 'comments/comment', comment:comment %>
   <%end%>
 </div>
-<% if current_user.admin? %>
-<%= link_to 'Змінити', edit_product_path(@product) %>
-<%end%>
-<%= link_to 'Назад', products_path %>

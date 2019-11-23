@@ -47,11 +47,10 @@ ActiveRecord::Schema.define(version: 20191121205749) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
-    t.string "user_email"
-    t.integer "product_id"
+    t.string "object_type"
+    t.integer "object_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_comments_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -85,6 +84,7 @@ ActiveRecord::Schema.define(version: 20191121205749) do
 
   create_table "userparams", force: :cascade do |t|
     t.integer "user_id"
+    t.string "nickname"
     t.string "firstname"
     t.string "lastname"
     t.string "phone"

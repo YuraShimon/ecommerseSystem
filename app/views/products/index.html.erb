@@ -30,7 +30,7 @@
         <td><%= product.date_in %></td>
         <td><%= product.sale %>%</td>
         <td><%= raw product.categories.map(&:name).map { |t| link_to t, category_path(t) }.join(', ') %></td>
-        <td><p><%= product.comments.count %> <%= (product.comments.count) == 1 ? 'Comment' : '' %></p></td>
+        <td><p>Nill</p></td>
         <td><%= link_to 'Посмотреть товар', product %></td>
         <% if current_user.admin? %>
         <td><%= link_to 'Изменить товар', edit_product_path(product) %></td>
