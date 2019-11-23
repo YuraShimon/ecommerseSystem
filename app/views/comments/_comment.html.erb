@@ -1,4 +1,16 @@
 <p>
-Користувач <%=comment.user.userparam.nickname%> написав:<br>
-<%=comment.body%>
+  Користувач <%=comment.user.userparam.nickname%> написав:<br>
+  <%=comment.body%>
+</p>
+<p>
+  Відповісти на комент
+  <%= form_for :comment, url:comments_path do |f| %>
+  <%= render 'comments/form', f:f%>
+  <%= f.hidden_field :object_id, value: comment.id%>
+  <%= f.hidden_field :object_type, value: comment.class.name%>
+  <%= f.submit "Відправити" %>
+  <% end %>
+  <% Comment.where(object: comment).each do |comment| %>
+  <%=render 'comments/comment', comment:comment %>s
+  <%end%>
 </p>
