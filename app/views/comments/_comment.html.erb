@@ -1,16 +1,18 @@
-<p>
-  Користувач <%=comment.user.userparam.nickname%> написав:<br>
-  <%=comment.body%>
-</p>
-<p>
-  Відповісти на комент
+<il class="content-list__item content-list__item_comment js-comment ">
+<div>
+  <div class="bg-light">
+  		<b><%=image_tag comment.user.userparam.avatar.url, height:22%></span> <%=comment.user.userparam.nickname%>:</b> <%=strip_tags(comment.body)%>
+  		<%if comment.user.id==current_user.id%><%=link_to comment_path(comment.id),data: {confirm: "Видалити?"}, method: :delete do%> <span class = "fa fa-times" style="color: lightgray;"><%end%>
+  		<%end%>
+  </div>
   <%= form_for :comment, url:comments_path do |f| %>
-  <%= render 'comments/form', f:f%>
-  <%= f.hidden_field :object_id, value: comment.id%>
-  <%= f.hidden_field :object_type, value: comment.class.name%>
-  <%= f.submit "Відправити" %>
+  <% @object= comment%>
+    <%= render 'comments/form', f:f%>
   <% end %>
-  <% Comment.where(object: comment).each do |comment| %>
-  <%=render 'comments/comment', comment:comment %>s
-  <%end%>
-</p>
+  <ul class="content-list content-list_nested-comments content-list_nested-comments-0">
+    <% Comment.where(object: comment).each do |comment| %>
+      <%=render 'comments/comment', comment:comment %>
+    <%end%>
+  </ul>
+    <hr class="hr-1" />
+</il>
