@@ -49,7 +49,7 @@
   <% end %>
   Коменти
   <ul class="content-list content-list_comments">
-    <% Comment.where(object: @post).each do |comment| %>
+    <% Comment.where(object: @product).each do |comment| %>
       <%=render 'comments/comment', comment:comment %>
     <%end%>
   </ul>
