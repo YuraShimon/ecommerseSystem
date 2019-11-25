@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Назва товару:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Розмір товару:</strong>
+  <%= @product.size %>
+</p>
+
+<p>
+  <strong>Повна ціна:</strong>
+  <%= @product.price_out %>
+</p>
+
+<p>
+  <strong>Ціна зі знижкою:</strong>
+  <%= @product.price_sale %>
+</p>
+
+<p>
+  <strong>Дата викладення товару:</strong>
+  <%= @product.date_in %>
+</p>
+
+<p>
+  <strong>Знижка:</strong>
+  <%= @product.sale %>%
+</p>
+
+<p>
+  <strong>Теги: </strong>
+  <%= raw @product.categories.map(&:name).map { |t| link_to t, category_path(t) }.join(', ') %>
+</p>
+
+<% if current_user.admin? %>
+  <p><h3><%= link_to 'Змінити поля товару', edit_product_path(@product) %></h3></p>
+<%end%>
+<p><h3><%= link_to 'Повернутися на сторінку продуктів', products_path %></h3></p>
+
+
+<hr>
+<div>
+  <%= form_for :comment, url:comments_path do |f| %>
+   <% @object= @product%>
+  	<%= render 'comments/form', f:f%>
+  <% end %>
+  Коменти
+  <ul class="content-list content-list_comments">
+    <% Comment.where(object: @post).each do |comment| %>
+      <%=render 'comments/comment', comment:comment %>
+    <%end%>
+  </ul>
+</div>

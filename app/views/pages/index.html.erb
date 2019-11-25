@@ -1,2 +1,27 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<center><h1>Тут має бути крута назва/логотип</h1></center>
+<% if user_signed_in? %>
+<center><h4><%= current_user.email %>, вітаємо вас на нашому сайті!</h4></center>
+<% end %>
+<div>
+	<% if user_signed_in? %>
+		<% if current_user.nil?%>
+			<%= link_to "Профіль" , userparam_path%><br>
+		<% else %>
+			<p><%= link_to "Профіль" , userparam_path(current_user.id)%></p>
+			<p><%= link_to 'Переглянути весь товар', products_path %></p>
+			<p><%= link_to 'Вийти', destroy_user_session_path, :method => :delete %></p>
+		<% end %>
+	<% else %>
+			<%= link_to 'Вхід', new_user_session_path %> или <%= link_to 'Зареєструватися', new_user_registration_path %>
+	<% end %>
+</div>
+<div>
+	<% if @product == [] %>
+	<p>Список продуктів порожній</p>
+	<% else %>
+		<% @product.each do | product | %>
+			<%= product.name %><br/>
+			<%= product.price_sale %><br/></p>
+		<% end %>
+	<% end %>
+</div>

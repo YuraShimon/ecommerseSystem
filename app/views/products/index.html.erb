@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Назва товара</th>
+      <th>Розмір товару</th>
+      <th>Повна ціна</th>
+      <th>Ціна зі знижкою</th>
+      <th>Дата викладення товару</th>
+      <th>Знижка(%)</th>
+      <th>Теги</th>
+      <th>Кількість коментарів</th>
+      <th>Переглянути товар</th>
+      <% if current_user.admin? %>
+      <th>Змінити товар</th>
+      <th>Знищити товар</th>
+      <%end%>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.size %></td>
+        <td><%= product.price_out %> грн</td>
+        <td><%= product.price_sale %> грн</td>
+        <td><%= product.date_in %></td>
+        <td><%= product.sale %>%</td>
+        <td><%= raw product.categories.map(&:name).map { |t| link_to t, category_path(t) }.join(', ') %></td>
+        <td><p>Nill</p></td>
+        <td><%= link_to 'Посмотреть товар', product %></td>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Изменить товар', edit_product_path(product) %></td>
+        <td><%= link_to 'Удалить товар', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= form_for "", url: products_path, role: "search", method: :get do %>
+  <%= text_field_tag :search, @search_term, placeholder: "Search"%>
+<%end%>
+
+<br>
+<% if current_user.admin? %>
+<%= link_to 'New Product', new_product_path %>
+<%end%>
+
+<p><%= link_to 'Головна сторінка', root_path %></p>
