@@ -10,7 +10,7 @@
       <th>Дата викладення товару</th>
       <th>Знижка(%)</th>
       <th>Теги</th>
-      <th>Кількість коментарів</th>
+      <th>Кількість лайків</th>
       <th>Переглянути товар</th>
       <% if current_user.admin? %>
       <th>Змінити товар</th>
@@ -30,7 +30,7 @@
         <td><%= product.date_in %></td>
         <td><%= product.sale %>%</td>
         <td><%= raw product.categories.map(&:name).map { |t| link_to t, category_path(t) }.join(', ') %></td>
-        <td><p>Nill</p></td>
+        <td><p><%= product.likes.count %> <%= (product.likes.count) == 1 ? 'Like' : 'Likes'%></p></td>
         <td><%= link_to 'Посмотреть товар', product %></td>
         <% if current_user.admin? %>
         <td><%= link_to 'Изменить товар', edit_product_path(product) %></td>

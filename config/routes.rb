@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :likes,only: [:create,:destroy]
     resources :comments, except:[:new,:edit,:show,:index]
+    resources :likes,only: [:create,:destroy]
     #resources :comments
   end
 

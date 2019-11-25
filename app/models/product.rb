@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
 	belongs_to :user
 	has_many :сomments, as: :object
+	has_many :likes,as: :object, dependent: :destroy
 	has_many :tags, dependent: :destroy
 	has_many :categories, through: :tags
   after_validation :set_new_price, on: [ :create, :update ]

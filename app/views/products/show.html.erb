@@ -34,7 +34,15 @@
   <strong>Теги: </strong>
   <%= raw @product.categories.map(&:name).map { |t| link_to t, category_path(t) }.join(', ') %>
 </p>
-
+<p>
+	<% pre_like = Like.find_by(user_id: current_user.id, object: @product) %>
+	<% if pre_like %>
+  		<%= button_to 'Unlike', product_like_path(@product,id: pre_like.id), method: :delete %>
+	<% else %>
+  		<%= button_to 'Like', product_likes_path(@product), method: :post %>
+	<% end %>
+</p>
+<p><%= @product.likes.count %> <%= (@product.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 <% if current_user.admin? %>
   <p><h3><%= link_to 'Змінити поля товару', edit_product_path(@product) %></h3></p>
 <%end%>
