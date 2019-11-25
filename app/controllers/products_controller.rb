@@ -7,6 +7,13 @@ class ProductsController < ApplicationController
   def index
     params[:category] ? @products = Product.category_with(params[:category]) :
     @products = Product.all
+    pp params[:amount]
+    if params[:amount]
+      min,max = params[:amount].split("-").map{|x|x=x.delete("$").to_i}
+      pp min
+      pp max
+      @products.where!("price_sale > ? AND price_sale < ?",min,max)
+    end
     if params[:search]
       @search_term = params[:search]
       @products = @products.search_by(@search_term)

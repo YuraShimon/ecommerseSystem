@@ -1,3 +1,23 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: 10000,
+    values: [ 0, 10000 ],
+    slide: function( event, ui ) {
+      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    }
+  });
+  $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+} );
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <table>
@@ -42,8 +62,16 @@
 </table>
 <br>
 
+<hr>
+
 <%= form_for "", url: products_path, role: "search", method: :get do %>
-  <%= text_field_tag :search, @search_term, placeholder: "Search"%>
+<div id="slider-range"></div>
+  <%= label_tag :amount, "Price range:" %>
+  <%= text_field_tag :amount,"", disabled: true, style:"border:0; color:#8B0000; font-weight:bold;" %>
+  <%= submit_tag :Пошук%>
+  <p>
+    <%= text_field_tag :search, @search_term, placeholder: "Search"%>
+  </p>
 <%end%>
 
 <br>
