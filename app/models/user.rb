@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_one :userparam, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :comments
 
   def create_userparam
