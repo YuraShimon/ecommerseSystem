@@ -55,7 +55,7 @@ gem 'jbuilder', '~> 2.5'
   #End_Gem_jquerry
 
   #Gem_bootstrap
-  gem 'bootstrap', '~> 4.0.0'
+  gem 'bootstrap', '~> 4.3.1'
   #End_Gem_bootstrap
 
   #Gem_Вибір_країни
